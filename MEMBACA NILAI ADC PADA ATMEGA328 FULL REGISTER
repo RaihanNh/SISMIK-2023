@@ -1,0 +1,85 @@
+#include <avr/io.h>
+#include <util/delay.h>
+#include <stdlib.h>
+
+void USART_Init();
+void USART_putC(unsigned char data);
+void USART_putS(char *s);
+
+void ADC_Init();
+uint16_t ADC_Read(uint8_t channel);
+
+int main(void) {
+    USART_Init(); // Inisialisasi komunikasi USART
+    ADC_Init();   // Inisialisasi modul ADC
+
+    while (1) {
+        for (uint8_t channel = 0; channel <= 4; ++channel) {
+            // Baca nilai ADC dari setiap pin pada port C (ADC0-ADC4)
+            uint16_t adcValue = ADC_Read(channel);
+
+            // Konversi nilai ADC ke string
+            char temp[7];
+            itoa(adcValue, temp, 10);
+
+            // Kirim nilai ADC melalui USART
+            USART_putS("ADC ");
+            USART_putC(channel + '0'); // Konversi nomor pin ke karakter dan kirimkan
+            USART_putS(": ");
+            USART_putS(temp);
+            USART_putS("\n");
+
+            _delay_ms(500); // Delay untuk tujuan demonstrasi, dapat disesuaikan sesuai kebutuhan
+        }
+    }
+
+    return 0;
+}
+
+void USART_Init() {
+    // Konfigurasi Baudrate 9600 (sesuaikan dengan kebutuhan)
+    UBRR0H = (uint8_t)(103 >> 8);
+    UBRR0L = (uint8_t)103;
+
+    // Mengaktifkan fungsi receiver dan transmitter
+    UCSR0B = _BV(RXEN0) | _BV(TXEN0);
+
+    // Format frame data: 8 data bits, 1 stop bit, no parity
+    UCSR0C = _BV(UCSZ01) | _BV(UCSZ00);
+}
+
+void USART_putC(unsigned char data) {
+    loop_until_bit_is_set(UCSR0A, UDRE0); // Menunggu UDR siap menerima data baru
+    UDR0 = data;                          // Menyimpan data pada register untuk dikirimkan
+}
+
+void USART_putS(char *s) {
+    while (*s) {
+        USART_putC(*s++); // Mengirim setiap karakter dalam string
+    }
+}
+
+void ADC_Init() {
+    // Mengatur referensi tegangan (AVCC dengan kapasitor external di AREF)
+    ADMUX = _BV(REFS0);
+
+    // Mengaktifkan ADC dan mengatur prescaler ke 128
+    ADCSRA = _BV(ADEN) | _BV(ADPS2) | _BV(ADPS1) | _BV(ADPS0);
+}
+
+uint16_t ADC_Read(uint8_t channel) {
+    // Menetapkan channel ADC yang akan dibaca
+    ADMUX &= 0xF0;           // Menghapus nilai channel sebelumnya
+    ADMUX |= channel & 0x0F; // Menetapkan channel baru
+
+    // Memulai konversi ADC
+    ADCSRA |= _BV(ADSC);
+
+    // Menunggu hingga konversi selesaiw
+    loop_until_bit_is_clear(ADCSRA, ADSC);
+
+    // Mengambil hasil konversi dari register ADC
+    uint16_t adcValue = ADC;
+
+    return adcValue;
+}
