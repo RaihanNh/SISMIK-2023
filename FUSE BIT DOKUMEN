@@ -1,0 +1,89 @@
+Setting fuse bit nya pakai konfigurasi ini
+uno.bootloader.low_fuses=0xff
+uno.bootloader.high_fuses=0xde
+uno.bootloader.extended_fuses=0x05
+
+//#include <asf.h>
+#include <stdlib.h>
+//#include "avr/sfr_defs.h"
+#include <avr/io.h>
+
+void USART_Init();
+void USART_putC(unsigned char data);
+void USART_putS(char*s);
+
+unsigned char USART_Receive(void);
+
+char hello[] = {"Hello World"};
+uint8_t data_integer = 126;
+float data_float = 3.14;
+char temp[7];
+	
+int main (void)
+{
+	/* Insert system clock initialization code here (sysclk_init()). */
+
+	USART_Init(); //memanggil fungsi untuk menginisialisasi komunikasi USART
+	
+	USART_putS(hello); //Mengirim data karakter yang tersimpan pada variabel hello
+	USART_putC('\n'); //Mengiri special karakter new line
+	
+	USART_putS("Data integer: ");
+	/*
+	itoa -> merubah integer ke array
+	itoa(nilai integer yang akan dirubah,
+		variable char penampung,
+		radix 10 untuk bilangan desimal)
+	*/
+	itoa(data_integer,temp,10);
+	USART_putS(temp);
+	USART_putC('\n'); //Mengirim special karakter new line
+	
+	USART_putS("Data float: ");
+	/*
+	dtostrf -> merubah bilangan float ke array
+	dtostrf(nilai float yang akan dirubah,
+		perkiraan lebar,
+		angka dibelakang koma,
+		variable char penampung)
+	*/
+	dtostrf(data_float, 4, 2, temp);
+	USART_putS(temp);
+	USART_putC('\n'); //Mengirim special karakter new line
+	
+	while(1){
+		USART_putC(USART_Receive());
+	}
+	/* Insert application code here, after the board has been initialized. */
+}
+
+void USART_Init(){
+	//Lihat ditabel setting bagaimana cara menghitung nilai UBRR
+	//Pada contoh ini menggunakan Baudrate 9600 dengan clock utama (fosc) 16MHz
+	//Dari tabel setting kita mendapatkan nilai sebesar 103
+	UBRR0H = (uint8_t) (103>>8);
+	UBRR0L = (uint8_t) 103;
+	
+	//Mengenablekan fungsi receiver dan transmitter
+	UCSR0B = _BV(RXEN0) | _BV(TXEN0);
+	
+	//Format frame data yang digunakan, 8data, 1stop bit, bit parity none. Data yang dikirim dan diterima bersifat async
+	UCSR0C = _BV(UCSZ01) | _BV(UCSZ00);
+}
+
+void USART_putC(unsigned char data){
+	loop_until_bit_is_set(UCSR0A,UDRE0); //Menunggu register UDR siap menerima data baru
+	UDR0 = data; //Menimpan data pada register, untuk dikikrimkan
+}
+
+unsigned char USART_Receive(void){
+	loop_until_bit_is_set(UCSR0A,RXC0); //Menunggu adanya data yang masuk
+	return UDR0; //Mengambil data yang tersimpan pada register
+}
+
+void USART_putS(char*s){
+	while (*s)
+	{
+		USART_putC(*s++); //Mengirimkan data yang tersimpan pada alamat yang ditunjukan oleh pointer, lalu menambahkan nilai pada alamat
+	}
+}
