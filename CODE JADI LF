@@ -1,0 +1,63 @@
+#include <avr/io.h>
+#include <util/delay.h>
+
+// Deklarasi fungsi
+void initializeADC();
+uint16_t readADC(uint8_t channel);
+
+int main(void) {
+    // Konfigurasi sebagai OUTPUT
+    DDRD = 0xFC; // PD7-PD2 sebagai output
+    PORTD |= (1 << PD4); // Aktifkan EN 1,2
+    PORTD |= (1 << PD7); // Aktifkan EN 3,4
+
+    initializeADC(); // Inisialisasi ADC
+
+    while (1) {
+        // Baca nilai ADC dari kelima sensor line follower
+        uint16_t sensorRightEnd = readADC(1);
+        uint16_t sensorLeftEnd = readADC(0);
+        uint16_t sensorLeft2 = readADC(4);
+        uint16_t sensorCenter = readADC(3);
+        uint16_t sensorRight2 = readADC(2);
+
+        // Logika kontrol berdasarkan nilai sensor
+        if (sensorCenter <= 925 || sensorLeftEnd <= 830 || sensorRightEnd <= 895 || sensorLeft2 <= 930 || sensorRight2 <= 930) {
+            // Stop Motor
+            PORTD &= ~((1 << PD6) | (1 << PD5) | (1 << PD3) | (1 << PD2));
+        } else {
+            // Maju
+            PORTD |= (1 << PD6);
+            PORTD &= ~(1 << PD5);
+            PORTD &= ~(1 << PD3);
+            PORTD |= (1 << PD2);
+        }
+    }
+
+    return 0;
+}
+
+void initializeADC() {
+    // Atur referensi tegangan (AVCC dengan kapasitor eksternal di AREF)
+    ADMUX = _BV(REFS0);
+
+    // Aktifkan ADC dan atur prescaler ke 128
+    ADCSRA = _BV(ADEN) | _BV(ADPS2) | _BV(ADPS1) | _BV(ADPS0);
+}
+
+uint16_t readADC(uint8_t channel) {
+    // Tentukan channel ADC yang akan dibaca
+    ADMUX &= 0xF0;           // Hapus nilai channel sebelumnya
+    ADMUX |= channel & 0x0F; // Tetapkan channel baru
+
+    // Mulai konversi ADC
+    ADCSRA |= _BV(ADSC);
+
+    // Tunggu hingga konversi selesai
+    loop_until_bit_is_clear(ADCSRA, ADSC);
+
+    // Ambil hasil konversi dari register ADC
+    uint16_t adcValue = ADC;
+
+    return adcValue;
+}
