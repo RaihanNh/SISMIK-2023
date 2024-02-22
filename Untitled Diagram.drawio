@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-02-22T07:38:13.519Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0" etag="24zMzBYIXY4aRdBUbRxT" version="23.1.5" type="github">
+<mxfile host="app.diagrams.net" modified="2024-02-22T07:44:56.279Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0" etag="rgooBcRvcyXLWxrle3ec" version="23.1.5" type="github">
   <diagram name="Page-1" id="74e2e168-ea6b-b213-b513-2b3c1d86103e">
-    <mxGraphModel dx="528" dy="292" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="793" dy="437" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -26,7 +26,7 @@
           <mxGeometry x="20" y="190" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="2dYA4mqOsPHXv_Ml5pBK-13" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Input drug exit schedule, number of doses, amount of drug&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="77e6c97f196da883-2">
-          <mxGeometry x="10" y="290" width="140" height="80" as="geometry" />
+          <mxGeometry x="10" y="300" width="140" height="80" as="geometry" />
         </mxCell>
         <mxCell id="2dYA4mqOsPHXv_Ml5pBK-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="77e6c97f196da883-2" source="2dYA4mqOsPHXv_Ml5pBK-11" target="2dYA4mqOsPHXv_Ml5pBK-13">
           <mxGeometry relative="1" as="geometry">
@@ -44,20 +44,20 @@
         </mxCell>
         <mxCell id="2dYA4mqOsPHXv_Ml5pBK-17" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rotation=0;" vertex="1" connectable="0" parent="2dYA4mqOsPHXv_Ml5pBK-16">
           <mxGeometry x="-0.7762" y="1" relative="1" as="geometry">
-            <mxPoint x="11" y="9" as="offset" />
+            <mxPoint x="-8" y="9" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="77e6c97f196da883-3" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;System&lt;/font&gt;" style="swimlane;html=1;startSize=20;" parent="77e6c97f196da883-1" vertex="1">
+        <mxCell id="77e6c97f196da883-3" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Application&lt;/font&gt;" style="swimlane;html=1;startSize=20;" parent="77e6c97f196da883-1" vertex="1">
           <mxGeometry x="160" y="20" width="160" height="710" as="geometry" />
         </mxCell>
         <mxCell id="2dYA4mqOsPHXv_Ml5pBK-9" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Open an App&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="77e6c97f196da883-3">
           <mxGeometry x="-130" y="120" width="100" height="50" as="geometry" />
         </mxCell>
         <mxCell id="2dYA4mqOsPHXv_Ml5pBK-15" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Data can be stored&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" vertex="1" parent="77e6c97f196da883-3">
-          <mxGeometry x="40" y="280" width="100" height="100" as="geometry" />
+          <mxGeometry x="40" y="290" width="100" height="100" as="geometry" />
         </mxCell>
         <mxCell id="2dYA4mqOsPHXv_Ml5pBK-19" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Data stored on a database&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="77e6c97f196da883-3">
-          <mxGeometry x="40.00105263157894" y="410" width="100" height="60" as="geometry" />
+          <mxGeometry x="40.00105263157894" y="430" width="100" height="60" as="geometry" />
         </mxCell>
         <mxCell id="2dYA4mqOsPHXv_Ml5pBK-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="77e6c97f196da883-3" source="2dYA4mqOsPHXv_Ml5pBK-15" target="2dYA4mqOsPHXv_Ml5pBK-19">
           <mxGeometry relative="1" as="geometry">
@@ -66,14 +66,39 @@
         </mxCell>
         <mxCell id="2dYA4mqOsPHXv_Ml5pBK-20" value="Yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="2dYA4mqOsPHXv_Ml5pBK-18">
           <mxGeometry x="0.1539" relative="1" as="geometry">
-            <mxPoint x="10" y="-1" as="offset" />
+            <mxPoint x="-10" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2dYA4mqOsPHXv_Ml5pBK-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="77e6c97f196da883-3" source="2dYA4mqOsPHXv_Ml5pBK-27">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="270" as="sourcePoint" />
+            <mxPoint x="90" y="400" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="240" y="400" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="77e6c97f196da883-4" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Smart Medicine Box&lt;/font&gt;" style="swimlane;html=1;startSize=20;" parent="77e6c97f196da883-1" vertex="1">
           <mxGeometry x="320" y="20" width="160" height="710" as="geometry" />
         </mxCell>
-        <mxCell id="2dYA4mqOsPHXv_Ml5pBK-22" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Connected to the Internet&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="77e6c97f196da883-4">
+        <mxCell id="2dYA4mqOsPHXv_Ml5pBK-22" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;ESP 32 internet connected&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="77e6c97f196da883-4">
           <mxGeometry x="30" y="40.00307692307692" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2dYA4mqOsPHXv_Ml5pBK-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="77e6c97f196da883-4" source="2dYA4mqOsPHXv_Ml5pBK-25">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80.26086956521749" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2dYA4mqOsPHXv_Ml5pBK-25" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Reads sensor values (DHT 11, MC 38, Buzzer/Alarm Status)&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="77e6c97f196da883-4">
+          <mxGeometry x="10" y="120" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="2dYA4mqOsPHXv_Ml5pBK-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="77e6c97f196da883-4" source="2dYA4mqOsPHXv_Ml5pBK-22" target="2dYA4mqOsPHXv_Ml5pBK-25">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80.26086956521749" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="2dYA4mqOsPHXv_Ml5pBK-27" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Send sensor values to database&lt;/font&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="77e6c97f196da883-4">
+          <mxGeometry x="20" y="210" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="2dYA4mqOsPHXv_Ml5pBK-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="77e6c97f196da883-1" source="2dYA4mqOsPHXv_Ml5pBK-9" target="2dYA4mqOsPHXv_Ml5pBK-11">
           <mxGeometry relative="1" as="geometry">
