@@ -1,0 +1,15 @@
+Vdc = 5v
+Photodioda
+R= 5v / 30nA
+R= 166,7 K ohm
+
+InfraRED 5mm
+Hukum Kirchhoff
+Vres = Vdc - Vfor_LED
+         = 5v - 3,2v
+         = 1,8
+
+Hukum Ohm
+R = Vres / I_for
+   = 1,8 / 25mA
+   = 72 ohm (bulatkan aja ke 100 kalo beli)
